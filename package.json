@@ -13,6 +13,7 @@
     "fetch": "^1.1.0",
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",
-    "superfetch": "^1.1.1"
+    "superfetch": "^1.1.1",
+    "lodash": ">=4.17.13"
   }
 }
