@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+    body {
+        background-color: <%= color %>;
+    }
+    .font-roboto {
+         font-family: 'Roboto', sans-serif;
+    }
+    .temp {
+        font-size: 50pt;
+    }
+    
+    .text {
+        position: relative;
+        top: 15px;
+    }
+    </style>
+    <center class="foo"><h4 class="font-roboto text">Its <%= weatherName %>!</h4> <br><h1 class="font-roboto temp"><%= temp %>°C</h1></center>
+</body>
+</html>
