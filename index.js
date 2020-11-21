@@ -22,9 +22,14 @@ app.use(views('views/', { autoRender: false, extension: 'ejs' }))
 
 app.use(async function (ctx) {
   if (ctx.path === '/') {
-    const locationdata = await superfetch.get(`http://api.ipstack.com/${ctx.ip.split(':').pop()}?access_key=${IPSTACK_API_KEY}&format=1`)
-    const weatherdata = await superfetch.get(`http://api.openweathermap.org/data/2.5/weather?lat=${JSON.parse(locationdata).latitude}&lon=${JSON.parse(locationdata).longitude}&APPID=${OWM_API_KEY}`)
-    ctx.body = await ctx.render('index', { temp: Math.floor(JSON.parse(weatherdata).main.temp - 273.15), weatherName: JSON.parse(weatherdata).weather[0].main, color: getRandomColor() })
+    const locationData = await superfetch.get(`http://api.ipstack.com/${ctx.ip.split(':').pop()}?access_key=${IPSTACK_API_KEY}&format=1`)
+    const parsedLocationData = JSON.parse(locationData)
+    const weatherData = await superfetch.get(`http://api.openweathermap.org/data/2.5/weather?lat=${parsedLocationData.latitude}&lon=${parsedLocationData.longitude}&APPID=${OWM_API_KEY}`)
+    ctx.body = await ctx.render('index', {
+      temp: Math.floor(JSON.parse(weatherData).main.temp - 273.15),
+      weatherName: JSON.parse(weatherData).weather[0].main,
+      color: getRandomColor()
+    })
   }
 })
 
